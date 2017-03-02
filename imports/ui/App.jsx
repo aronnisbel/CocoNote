@@ -7,16 +7,22 @@ import Wall from './Wall.jsx';
 
 export default class App extends Component {
  
-  
+  renderWallarea(){
+    return <Wall/>
+  }
 
   render() {
     return (
       <div className="container">
         <header>
-          <h1>Todo List</h1>
+          <h1>CocoNote!</h1>
         </header>
  
-        <Wall/>      
+        <main className="wall-area">
+
+	
+	 {this.renderWallarea()}
+	</main>   
         
       </div>
     );
