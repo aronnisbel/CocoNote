@@ -2,14 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import Draggable from 'react-draggable';
 
 
+import TextEdit from './TextEdit.jsx';
+
 export default class NoteContainer extends Component {
 
-  getNotecontent() { 
-    
+  getNotecontent() {
+
   }
 
   render() {
-    return ( 
+    return (
         <Draggable
 	axis="both"
 	grid={[5,5]}
@@ -22,10 +24,11 @@ export default class NoteContainer extends Component {
         onDrag={this.handleDrag}
         onStop={this.handleStop}>
 
-        <div className="notecontainer"></div>
-        
+        <div className="notecontainer">
+          <TextEdit/>
+        </div>
+
 	</Draggable>);
   }
 
 }
-
