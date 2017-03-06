@@ -18,13 +18,21 @@ body {
   font-size: 14px;
 }
 
-.Wall {
-
+.wall {
+  position: relative;
+  top: 0px;
+  left:0px;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+.Wall-area {
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .textEdit{
   background-color: #fff;
-  
+
 }
 
 .note-holder {
@@ -32,12 +40,14 @@ body {
   top: 100px;
   left: 300px;
 }
+.notecontainer {
+  background-color: red;
+}
 
 .container {
-  max-width: 600px;
-  margin: 0 auto;
+  min-width: 100%;
   min-height: 100%;
-  background: white;
+  background: rgba(255,255,255,0.03);
 }
 
 header {
