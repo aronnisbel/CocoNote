@@ -30,6 +30,12 @@ body {
   min-height: 100%;
 }
 
+.addnote-button {
+  position: fixed;
+  bottom: 20px;
+  left: 10px;
+}
+
 .textEdit{
   background-color: #fff;
 
@@ -42,6 +48,8 @@ body {
 }
 .notecontainer {
   background-color: red;
+  max-width: 15rem;
+  position: absolute;
 }
 
 .container {

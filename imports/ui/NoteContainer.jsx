@@ -17,7 +17,8 @@ export default class NoteContainer extends Component {
 	grid={[5,5]}
         handle=".notecontainer"
 	bounds=".wall"
-        defaultPosition={{x: 0, y: 0}}
+	cancel= 'textarea'
+        defaultPosition={{x: this.props.notedata.posx, y: this.props.notedata.posy}}
         position={null}
         zIndex={100}
         onStart={this.handleStart}
