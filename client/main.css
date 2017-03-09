@@ -48,7 +48,6 @@ body {
 }
 .notecontainer {
   background-color: red;
-  max-width: 15rem;
   position: absolute;
 }
 
@@ -81,6 +80,7 @@ form {
   margin-top: 10px;
   margin-bottom: -10px;
   position: relative;
+  margin: 10px;
 }
 
 .new-task input {
