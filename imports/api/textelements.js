@@ -4,8 +4,8 @@ import { check } from 'meteor/check';
 
 
 export const  Textelements = new Mongo.Collection('textelements');
-Metor.methods({
 
+Metor.methods({
    //Insert to the mongo db
    'textelements.insert'(text) {
      check(text, String);
@@ -28,17 +28,15 @@ Metor.methods({
  'textelements.remove'(textId) {
    check(textId, String);
 
+   /*if(!this.userId || !Meteor.user().profile.admin){
+      throw new Meteor.Error('not-authorized');
+    }*/
+
    Textelements.remove(textId);
  },
 
  //Update text...?
-
-
- 'tasks.setChecked'(textId, setChecked) {
-    check(textId, String);
-    check(setChecked, Boolean);
-
-    Textelements.update(taskId, { $set: { checked: setChecked } });
+    Textelements.update(textId, { $set: { checked: setChecked } });
   },
 
 });
