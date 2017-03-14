@@ -55,11 +55,14 @@ export default class Wall extends Component {
     );
   }
 }
+
+// ska proptypes vara saker som finns som state i komponenten eller kan det vara tasks och incompletecount som du skrivit?
+/*
 Wall.propTypes = {
     tasks: PropTypes.array.isRequired,
     incompleteCount: PropTypes.number.isRequired,
 };
-
+*/
 /*export default createContainer(() => {
    Meteor.subscribe('notes');
     return {

@@ -30,6 +30,8 @@ class App extends Component {
     );
   }
 }
+/*
 App.propTypes = {
     Wall: PropTypes.array.isRequired,
 };
+*/
