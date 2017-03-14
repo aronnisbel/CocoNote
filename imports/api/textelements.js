@@ -1,42 +1,50 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-import { check } from 'meteor/check';
+import {check } from 'meteor/check';
 
-
-export const  Textelements = new Mongo.Collection('textelements');
+export const Textelements = new Mongo.Collection('textelements');
 
 Meteor.methods({
-   //Insert to the mongo db
-   'textelements.insert'(text) {
-     check(text, String);
+    //Insert to the mongo db
+    'textelements.insert' (text, createdAt, textId) {
+        check(text, String);
 
-     // Make sure the user is logged in before inserting a task
-    /**if (! this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }***/
+        // Make sure the user is logged in before inserting a task
+        if (!this.userId) {
+            throw new Meteor.Error('not-authorized');
+        }
 
-   Textelements.insert({
-      text,
-      createdAt: new Date(),
-      textId,
-    //  owner: this.userId,
-    //username: Meteor.users.findOne(this.userId).username,
-    });
- },
+        Textelements.insert({
+            text,
+            createdAt: new Date(),
+            textId,
+            //  owner: this.userId,
+            //username: Meteor.users.findOne(this.userId).username,
+        });
+      },
 
- //Remove from mongo db
- 'textelements.remove'(textId) {
-   check(textId, String);
+  /*  //Update text...?
+    Textelements.update(
+      {_id: textId},
+       { $set: {
+            "text": text,
+            "createdAt": new Date(),
+            "textId": textId
+        }
+    })*/
+    //Remove from mongo db
+    'textelements.remove' (textId) {
+        check(textId, String);
 
-   /*if(!this.userId || !Meteor.user().profile.admin){
-      throw new Meteor.Error('not-authorized');
-    }*/
+        if(!this.userId || !Meteor.user().profile.admin){
+           throw new Meteor.Error('not-authorized');
+         }
 
-   Textelements.remove(textId);
- },
+        Textelements.remove(textId);
+    },
 
- //Update text...?
+
     //Textelements.update(textId, { $set: { checked: setChecked } });
-  //},
+    //},
 
 });
