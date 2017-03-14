@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import {Meteor} from 'meteor/meteor';
+import {createContainer} from 'meteor/react-meteor-data';
 
 import Wall from './Wall.jsx';
 
@@ -6,8 +9,10 @@ import Wall from './Wall.jsx';
 // App component - represents the whole app
 // grunden i vår applikation
 
-export default class App extends Component {
-
+class App extends Component {
+  constructor(props) {
+   super(props);
+ }
   render() {
     return (
       <div className="container">
@@ -25,3 +30,6 @@ export default class App extends Component {
     );
   }
 }
+App.propTypes = {
+    Wall: PropTypes.array.isRequired,
+};

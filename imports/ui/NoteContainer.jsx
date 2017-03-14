@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import Draggable from 'react-draggable';
-
+import { Meteor } from 'meteor/meteor';
+import classnames from 'classnames';
 
 import TextEdit from './TextEdit.jsx';
 
 export default class NoteContainer extends Component {
+
 
   getNotecontent() {
 
@@ -25,7 +27,10 @@ export default class NoteContainer extends Component {
         onDrag={this.handleDrag}
         onStop={this.handleStop}>
 
-        <div className="notecontainer">
+        <button className="delete" onClick={this.deleteThisNote.bind(this)}>
+                  &times;
+                </button>
+        <div>
           <TextEdit/>
         </div>
 

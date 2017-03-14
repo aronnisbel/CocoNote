@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-
+import { Meteor } from 'meteor/meteor';
+import classnames from 'classnames';
 // Texteditor component - represents a texteditor that the user can use for
 //notetaking
 
@@ -11,18 +12,16 @@ export default class TextEdit extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  deleteThisNote() {
+    Meteor.call('notes.remove', this.props.TextEdit._id);
   }
-
-  handleSubmit(event) {
+  /*handleSubmit(event) {
     alert('A note was submitted: ' + this.state.value);
     event.preventDefault();
-  }
+  }*/
 
 
-  render() {
+  /*render() {
     return (
       //<div className="textEdit">
         <form onSubmit={this.handleSubmit}>
@@ -34,4 +33,5 @@ export default class TextEdit extends Component {
     //  </div>
     );
   }
+}*/
 }
