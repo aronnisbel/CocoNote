@@ -30,6 +30,12 @@ body {
   min-height: 100%;
 }
 
+.addnote-button {
+  position: fixed;
+  bottom: 20px;
+  left: 10px;
+}
+
 .textEdit{
   background-color: #fff;
 
@@ -42,6 +48,7 @@ body {
 }
 .notecontainer {
   background-color: red;
+  position: absolute;
 }
 
 .container {
@@ -73,6 +80,7 @@ form {
   margin-top: 10px;
   margin-bottom: -10px;
   position: relative;
+  margin: 10px;
 }
 
 .new-task input {

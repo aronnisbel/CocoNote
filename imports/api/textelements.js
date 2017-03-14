@@ -5,7 +5,7 @@ import { check } from 'meteor/check';
 
 export const  Textelements = new Mongo.Collection('textelements');
 
-Metor.methods({
+Meteor.methods({
    //Insert to the mongo db
    'textelements.insert'(text) {
      check(text, String);
@@ -36,7 +36,7 @@ Metor.methods({
  },
 
  //Update text...?
-    Textelements.update(textId, { $set: { checked: setChecked } });
-  },
+    //Textelements.update(textId, { $set: { checked: setChecked } });
+  //},
 
 });

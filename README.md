@@ -17,6 +17,9 @@ This application offers a log in funtionality, you can create a user and decide 
 Installing and configuration instructions
 ------------------------
 Requirements: Meteor, ... 
+cd CocoNote (the applicationname)
+meteor npm install (install meteor)
+meteor (to run the application)
 
 Contact inforamtion
 ------------------------
