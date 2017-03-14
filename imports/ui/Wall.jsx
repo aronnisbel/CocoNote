@@ -7,6 +7,8 @@ import NoteContainer from './NoteContainer.jsx';
 
 export default class Wall extends Component {
 
+
+
   renderNotecontainers() {
 
     return <NoteContainer/>

@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import Draggable from 'react-draggable';
+import { createContainer } from 'meteor/react-meteor-data';
 
+import { Textelement} from '../api/textelements.js';
 
-import TextEdit from './TextEdit.jsx';
+import TextEdit from './textedit.jsx';
 
 export default class NoteContainer extends Component {
 
