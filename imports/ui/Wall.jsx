@@ -55,7 +55,7 @@ export default class Wall extends Component {
     );
   }
 }
-App.propTypes = {
+Wall.propTypes = {
     tasks: PropTypes.array.isRequired,
     incompleteCount: PropTypes.number.isRequired,
 };

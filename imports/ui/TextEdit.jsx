@@ -35,3 +35,7 @@ export default class TextEdit extends Component {
   }
 }*/
 }
+TextEdit.propTypes = {
+    tasks: PropTypes.array.isRequired,
+    incompleteCount: PropTypes.number.isRequired,
+};
