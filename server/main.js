@@ -1,3 +1,4 @@
+import '../imports/api/notes.js';
 import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
