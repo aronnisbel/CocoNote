@@ -5,6 +5,17 @@ import { check } from 'meteor/check';
  
 export const Notes = new Mongo.Collection('notes');
 
+if (Meteor.isServer) {
+  // this code only runs on the server
+  Meteor.publish('usernotes', function notesPublication() {
+    return Notes.find({ 
+      $or: [
+	{ owner: this.userId },
+	{ owner: this.userId },
+      ],
+    });
+  });   
+}
 Meteor.methods({
 	'notes.insert'(text) {
 		check(text,String);

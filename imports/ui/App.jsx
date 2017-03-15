@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
 
 import { Notes } from '../api/notes.js';
 
@@ -17,6 +18,14 @@ class App extends Component {
 	this.handleClick = this.handleClick.bind(this);
 	this.state = { notescontent: []};
   }
+
+  renderNoteContents() {
+    return this.props.notes.map((note) => (
+      <NoteContainer key ={note._id} notetext={note} />
+    ));
+  }
+
+
   handleClick(event) {
 	event.preventDefault();
 
@@ -48,9 +57,9 @@ class App extends Component {
 	  }
         </header>
 
-        <main className="wall-area">
+        <main className="wall-area wall">
 
-         <Wall notecontent={Notes.find({}).fetch()}/>
+         {this.renderNoteContents()}
 
      </main>
 
@@ -64,6 +73,7 @@ App.proptypes = {
 };
 
 export default createContainer(() => {
+	Meteor.subscribe('usernotes');
 	return {
 		
 		notes: Notes.find({}).fetch(),
