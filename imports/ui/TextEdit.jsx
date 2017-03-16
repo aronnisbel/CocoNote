@@ -27,23 +27,32 @@ export default class TextEdit extends Component {
     e = e || event;
     if (e.keyCode === 13 && !e.ctrlKey) {
 
-    if(this.state.value.length == 1) {
+      if(this.state.value.length == 1) {
 	console.log("hello");
 	Meteor.call('notes.remove',this.props.noteidentity);
       }
-    else {
+      else {
       Meteor.call('notes.update', this.props.noteidentity, this.state.value);
      
+      }
     }
   }
- 
+  compareDates() {
+	var comparedate = new Date();
+	if ((comparedate.getTime() - this.props.datecreated.getTime()) < 3000) {
+	  return (true);
+	}   
+	else {
+	  return (false);
+	}
   }
 
   render() {
     return (
       
           <textarea autoFocus id="noteEditor" name="message" rows="3" cols="30"
-            placeholder={this.state.value}
+            placeholder={ this.compareDates.bind(this) ?
+		"Add some text" : this.props.temptext          }
 	    value={this.state.value}
             onChange={this.handleChange} 
 	    onKeyUp={this.enterSubmit }></textarea>

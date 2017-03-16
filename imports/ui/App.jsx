@@ -32,7 +32,7 @@ class App extends Component {
 	/*// Find the text field via the React ref
         const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();*/
 	
-	const text = "please add some text here";
+	const text = "";
 	Meteor.call('notes.insert', text);
 
 	// clear form
