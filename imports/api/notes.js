@@ -39,4 +39,10 @@ Meteor.methods({
 		check(noteId, String);
 		Notes.remove(noteId);
 	},
+	'notes.update'(noteId,texttoWrite) {
+		check(noteId, String);
+		check(texttoWrite, String)
+		Notes.update( {
+		  _id: noteId},{$set:{ text: texttoWrite}});
+	}
 });

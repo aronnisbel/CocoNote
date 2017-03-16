@@ -6,9 +6,25 @@ import { Notes } from '../api/notes.js';
 import TextEdit from './TextEdit.jsx';
 
 export default class NoteContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {showtext: true, showeditor: false}
+    this.deletethisNote = this.deletethisNote.bind(this);
+    this.updateNoteText = this.updateNoteText.bind(this);
+    this.enterEditMode = this.enterEditMode.bind(this);
+  }
 
   deletethisNote() {
     Meteor.call('notes.remove', this.props.notetext._id);
+  }
+
+  updateNoteText(textToWrite) {
+    Meteor.call('notes.update', this.props.notetext._id, textToWrite);
+    
+  }
+
+  enterEditMode() {
+     this.setState({showtext: false, showeditor: true})
   }
 
   render() {
@@ -27,8 +43,11 @@ export default class NoteContainer extends Component {
         onStop={this.handleStop}>
 
         <div className="notecontainer">
-	  <button type="button" className="deleteNotebutton" onClick={this.deletethisNote.bind(this)}>&times;</button>
-          <p>{this.props.notetext.text}</p>
+	  <button type="button" className="deleteNotebutton" onClick={this.deletethisNote}>&times;</button>
+          
+		<p >{this.props.notetext.text}</p> 
+	  
+		<TextEdit temptext={this.props.notetext.text} noteidentity={this.props.notetext._id}/>
         </div>
 
 	</Draggable>);
