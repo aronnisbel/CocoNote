@@ -31,6 +31,7 @@ Meteor.methods({
 		  createdAt: new Date(),
 		  posX: 300,
 		  posY: 300,
+		  editmode: false,
 		  owner: this.userId,
 		  username: Meteor.users.findOne(this.userId).username,
 		});
@@ -43,6 +44,17 @@ Meteor.methods({
 		check(noteId, String);
 		check(texttoWrite, String)
 		Notes.update( {
-		  _id: noteId},{$set:{ text: texttoWrite}});
-	}
+		  _id: noteId},{$set:{ text: texttoWrite, editmode: false}});
+	},
+	'notes.updateposition'(noteId,newposx, newposy) {
+		check(noteId, String);
+		Notes.update( {
+		  _id: noteId},{$set:{ posX: newposx, posY, newposy}});
+	},
+	'notes.seteditmode'(noteId) {
+		var newbool = 
+		check(noteId, String);
+		Notes.update( {
+		  _id: noteId},{$set:{editmode: true}});
+	},
 });

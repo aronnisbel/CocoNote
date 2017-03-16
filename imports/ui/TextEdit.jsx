@@ -28,18 +28,19 @@ export default class TextEdit extends Component {
     if (e.keyCode === 13 && !e.ctrlKey) {
       console.log("hi");
       Meteor.call('notes.update', this.props.noteidentity, this.state.value);
+      Meteor.call('notes.toggleedit', this.props.noteidentity);
     }
  
   }
 
   render() {
     return (
-      //<div className="textEdit">
-          <textarea id="noteEditor" name="message" rows="10" cols="30"
+      
+          <textarea id="noteEditor" name="message" rows="3" cols="30"
             value={this.state.value}
             onChange={this.handleChange} 
 	    onKeyUp={this.enterSubmit }></textarea>
-    //  </div>
+    
     );
   }
 }

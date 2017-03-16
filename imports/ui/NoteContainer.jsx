@@ -12,6 +12,7 @@ export default class NoteContainer extends Component {
     this.deletethisNote = this.deletethisNote.bind(this);
     this.updateNoteText = this.updateNoteText.bind(this);
     this.enterEditMode = this.enterEditMode.bind(this);
+    this.toggleEditor = this.toggleEditor.bind(this);
   }
 
   deletethisNote() {
@@ -25,6 +26,9 @@ export default class NoteContainer extends Component {
 
   enterEditMode() {
      this.setState({showtext: false, showeditor: true})
+  }
+  toggleEditor() {
+    Meteor.call('notes.seteditmode', this.props.notetext._id);
   }
 
   render() {
@@ -43,11 +47,11 @@ export default class NoteContainer extends Component {
         onStop={this.handleStop}>
 
         <div className="notecontainer">
-	  <button type="button" className="deleteNotebutton" onClick={this.deletethisNote}>&times;</button>
-          
-		<p >{this.props.notetext.text}</p> 
-	  
-		<TextEdit temptext={this.props.notetext.text} noteidentity={this.props.notetext._id}/>
+	   
+	{ this.props.notetext.editmode ?  
+		 <div className="noteeditorcontainer"><button type="button" className="deletenotebutton" onClick={this.deletethisNote}>delete note</button>
+		 <TextEdit temptext={this.props.notetext.text} noteidentity={this.props.notetext._id}/></div> : <p onClick={this.toggleEditor}>{this.props.notetext.text}</p>
+	}
         </div>
 
 	</Draggable>);
