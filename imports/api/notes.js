@@ -2,19 +2,19 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
- 
+
 export const Notes = new Mongo.Collection('notes');
 
 if (Meteor.isServer) {
   // this code only runs on the server
   Meteor.publish('usernotes', function notesPublication() {
-    return Notes.find({ 
+    return Notes.find({
       $or: [
 	{ owner: this.userId },
 	{ owner: this.userId },
       ],
     });
-  });   
+  });
 }
 Meteor.methods({
 	'notes.insert'(text) {
@@ -25,7 +25,7 @@ Meteor.methods({
 		if (! this.userId) {
 			throw new Meteor.Error('not-authorized');
 		}
-		
+
 		Notes.insert({
 		  text,
 		  createdAt: new Date(),
@@ -39,4 +39,9 @@ Meteor.methods({
 		check(noteId, String);
 		Notes.remove(noteId);
 	},
+  'notes.updatePosition'(noteId, pos){
+    check(noteId, String);
+    Notes.update({
+      _id: noteId},{$set:{posX: pos, posY: pos}});
+  },
 });

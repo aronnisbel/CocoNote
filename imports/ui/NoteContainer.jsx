@@ -11,11 +11,15 @@ export default class NoteContainer extends Component {
     Meteor.call('notes.remove', this.props.notetext._id);
   }
 
+  updatePosition(){
+    Meteor.call('notes.updatePosition', this.props.notetext._id, 500;
+  }
+
   render() {
     return (
         <Draggable
 	axis="both"
-	grid={[5,5]}
+	grid={[1,1]}
         handle=".notecontainer"
 	bounds=".wall"
 	cancel= 'textarea'
@@ -24,7 +28,7 @@ export default class NoteContainer extends Component {
         zIndex={100}
         onStart={this.handleStart}
         onDrag={this.handleDrag}
-        onStop={this.handleStop}>
+        onStop={this.updatePosition.bind(this)}>
 
         <div className="notecontainer">
 	  <button type="button" className="deleteNotebutton" onClick={this.deletethisNote.bind(this)}>&times;</button>
