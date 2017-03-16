@@ -25,6 +25,7 @@ export default class NoteContainer extends Component {
     var matrix = window.getComputedStyle(ReactDOM.findDOMNode(this.refs.noteainer)).getPropertyValue("transform");
     var numbers = matrix.match(/\d+/g).slice(-2).map(Number);
     Meteor.call('notes.updatePosition', this.props.notetext._id, numbers[0], numbers[1]);
+  }
 
   updateNoteText(textToWrite) {
     Meteor.call('notes.update', this.props.notetext._id, textToWrite);
