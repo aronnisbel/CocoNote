@@ -4,7 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 import { Textelement} from '../api/textelements.js';
 
-import TextEdit from './textedit.jsx';
+import TextEdit from './TextEdit.jsx';
 
 export default class NoteContainer extends Component {
 

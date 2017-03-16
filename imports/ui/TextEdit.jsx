@@ -39,6 +39,7 @@ export default class TextEdit extends Component {
             <form onSubmit={this.handleSubmit}>
               <textarea name="message" rows="10" cols="30"
                 value={this.state.value}
+                  placeholder="Type to add new note"
                 onChange={this.handleChange}>"The cat was playing in the garden."</textarea>
               <input type = "submit" value = "Submit" />
             </form>
@@ -65,7 +66,7 @@ export default class TextEdit extends Component {
         //  {this.props.textedit.text}
         //  </div>
 
-
+      );
     }
 }
 
@@ -74,4 +75,5 @@ TextEdit.propTypes = {
   // This component gets the task to display through a React prop.
   // We can use propTypes to indicate it is required
   textedit: PropTypes.object.isRequired,
-);
+
+};
