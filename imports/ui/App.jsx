@@ -45,6 +45,19 @@ class App extends Component {
 	  <NoteContainer key={note._id} notetext={note} />
 	));
   }
+  renderonwallclick(event) {
+    event.preventDefault();
+    if (event.target.id == "wallcanvas") {
+
+      var xxpos = event.clientX;
+      var yypos = event.clientY - 70;
+	console.log(event.clientX);
+	console.log(event.clientY);
+      const text = "";
+      Meteor.call('notes.insertpos', text, xxpos, yypos );
+      //Meteor.call('notes.insertwithpos', text, event.target.clientX, event.target.clientY);
+    }
+  }
   render() {
     return (
       <div className="container">
@@ -58,7 +71,7 @@ class App extends Component {
 	  }
         </header>
 
-        <main className="wall-area wall">
+        <main id="wallcanvas"className="wall-area wall" onClick={this.renderonwallclick.bind(this)}>
 
          {this.renderNoteContents()}
 
