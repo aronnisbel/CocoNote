@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import { Textelements } from '../api/textelements.js';
-
+import  AccountsUIWrapper  from './AccountsUIWrapper.jsx';
 import Wall from './Wall.jsx';
 //import Textelements from './Textelements.jsx';
 
@@ -10,13 +10,14 @@ import Wall from './Wall.jsx';
 // App component - represents the whole app
 // grunden i vår applikation
 
-export default class App extends Component {
+class App extends Component {
 
   render() {
     return (
       <div className="container">
         <header>
-          <h1>CocoNote!</h1>
+          <h1>Welcome to CocoNote!</h1>
+          <AccountsUIWrapper/>
         </header>
 
         <main className="wall-area">
@@ -30,10 +31,11 @@ export default class App extends Component {
   }
 }
 
+/*
 App.propTypes = {
   textelements: PropTypes.isRequired,
 };
-
+*/
 export default createContainer(() => {
   return {
     textelements: Textelements.find({}).fetch(),
