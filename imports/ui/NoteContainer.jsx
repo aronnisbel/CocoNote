@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Draggable from 'react-draggable';
+import ReactDOM from 'react-dom';
 
 
 import { Notes } from '../api/notes.js';
@@ -13,15 +14,21 @@ export default class NoteContainer extends Component {
     this.updateNoteText = this.updateNoteText.bind(this);
     this.enterEditMode = this.enterEditMode.bind(this);
     this.toggleEditor = this.toggleEditor.bind(this);
+    this.updatePosition = this.updatePosition.bind(this);
   }
 
   deletethisNote() {
     Meteor.call('notes.remove', this.props.notetext._id);
   }
 
+  updatePosition(){
+    var matrix = window.getComputedStyle(ReactDOM.findDOMNode(this.refs.noteainer)).getPropertyValue("transform");
+    var numbers = matrix.match(/\d+/g).slice(-2).map(Number);
+    Meteor.call('notes.updatePosition', this.props.notetext._id, numbers[0], numbers[1]);
+
   updateNoteText(textToWrite) {
     Meteor.call('notes.update', this.props.notetext._id, textToWrite);
-    
+
   }
 
   enterEditMode() {
@@ -35,7 +42,7 @@ export default class NoteContainer extends Component {
     return (
         <Draggable
 	axis="both"
-	grid={[5,5]}
+	grid={[1,1]}
         handle=".notecontainer"
 	bounds=".wall"
 	cancel= 'textarea'
@@ -44,11 +51,11 @@ export default class NoteContainer extends Component {
         zIndex={100}
         onStart={this.handleStart}
         onDrag={this.handleDrag}
-        onStop={this.handleStop}>
+        onStop={this.updatePosition}>
 
-        <div className="notecontainer">
-	   
-	{ this.props.notetext.editmode ?  
+        <div className="notecontainer" ref="noteainer">
+
+	{ this.props.notetext.editmode ?
 		 <div className="noteeditorcontainer"><button type="button" className="deletenotebutton" onClick={this.deletethisNote}>delete note</button>
 		 <TextEdit temptext={this.props.notetext.text} noteidentity={this.props.notetext._id}/></div> : <p onClick={this.toggleEditor}>{this.props.notetext.text}</p>
 	}
