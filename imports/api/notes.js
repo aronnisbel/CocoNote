@@ -35,13 +35,15 @@ Meteor.methods({
 		  username: Meteor.users.findOne(this.userId).username,
 		});
 	},
+
 	'notes.remove'(noteId) {
 		check(noteId, String);
 		Notes.remove(noteId);
 	},
-  'notes.updatePosition'(noteId, pos){
+  
+  'notes.updatePosition'(noteId, posx, posy){
     check(noteId, String);
     Notes.update({
-      _id: noteId},{$set:{posX: pos, posY: pos}});
+      _id: noteId},{$set:{posX: posx, posY: posy}});
   },
 });

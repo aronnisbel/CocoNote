@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Draggable from 'react-draggable';
+import ReactDOM from 'react-dom';
 
 
 import { Notes } from '../api/notes.js';
@@ -12,7 +13,9 @@ export default class NoteContainer extends Component {
   }
 
   updatePosition(){
-    Meteor.call('notes.updatePosition', this.props.notetext._id, 500;
+    var matrix = window.getComputedStyle(ReactDOM.findDOMNode(this.refs.noteainer)).getPropertyValue("transform");
+    var numbers = matrix.match(/\d+/g).slice(-2).map(Number);
+    Meteor.call('notes.updatePosition', this.props.notetext._id, numbers[0], numbers[1]);
   }
 
   render() {
@@ -30,7 +33,7 @@ export default class NoteContainer extends Component {
         onDrag={this.handleDrag}
         onStop={this.updatePosition.bind(this)}>
 
-        <div className="notecontainer">
+        <div className="notecontainer" ref="noteainer">
 	  <button type="button" className="deleteNotebutton" onClick={this.deletethisNote.bind(this)}>&times;</button>
           <p>{this.props.notetext.text}</p>
         </div>
