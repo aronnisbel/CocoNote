@@ -26,18 +26,25 @@ export default class TextEdit extends Component {
   enterSubmit(e) {
     e = e || event;
     if (e.keyCode === 13 && !e.ctrlKey) {
-      console.log("hi");
+
+    if(this.state.value.length == 1) {
+	console.log("hello");
+	Meteor.call('notes.remove',this.props.noteidentity);
+      }
+    else {
       Meteor.call('notes.update', this.props.noteidentity, this.state.value);
-      Meteor.call('notes.toggleedit', this.props.noteidentity);
+     
     }
+  }
  
   }
 
   render() {
     return (
       
-          <textarea autofocus onclick="this.focus();this.select()"id="noteEditor" name="message" rows="3" cols="30"
+          <textarea autoFocus id="noteEditor" name="message" rows="3" cols="30"
             placeholder={this.state.value}
+	    value={this.state.value}
             onChange={this.handleChange} 
 	    onKeyUp={this.enterSubmit }></textarea>
     

@@ -53,9 +53,8 @@ export default class NoteContainer extends Component {
         onStart={this.handleStart}
         onDrag={this.handleDrag}
         onStop={this.updatePosition}>
-
         <div className="notecontainer" ref="noteainer">
-
+	<button type="button" className="deletenotebutton" onClick={this.deletethisNote}>delete note</button>
 	{ this.props.notetext.editmode ?
 		 <div className="noteeditorcontainer"><button type="button" className="deletenotebutton" onClick={this.deletethisNote}>delete note</button>
 		 <TextEdit temptext={this.props.notetext.text} noteidentity={this.props.notetext._id}/></div> : <p onClick={this.toggleEditor}>{this.props.notetext.text}</p>
