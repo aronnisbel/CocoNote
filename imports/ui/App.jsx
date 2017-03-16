@@ -50,6 +50,7 @@ class App extends Component {
       <div className="container">
         <header>
           <h1>CocoNote!</h1>
+	  <h3 id="userlogintext"> User: </h3>
 	  <AccountsUIWrapper />
 	  {this.props.currentUser ?
 

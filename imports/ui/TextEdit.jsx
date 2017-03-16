@@ -25,7 +25,11 @@ export default class TextEdit extends Component {
 
   enterSubmit(e) {
     e = e || event;
-    if (e.keyCode === 13 && !e.ctrlKey) {
+    
+    if (e.shiftKey && e.keyCode === 13) {
+	this.setState({value: event.target.value});
+    }
+    else if (e.keyCode === 13 && !e.ctrlKey) {
 
       if(this.state.value.length == 1) {
 	console.log("hello");
