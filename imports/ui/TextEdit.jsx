@@ -6,10 +6,12 @@ import React, { Component, PropTypes } from 'react';
 export default class TextEdit extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    var notetexttemp = this.props.temptext;
+    this.state = {value: notetexttemp, tempnotetext: this.props.temptext};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.enterSubmit = this.enterSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -17,21 +19,28 @@ export default class TextEdit extends Component {
   }
 
   handleSubmit(event) {
-    alert('A note was submitted: ' + this.state.value);
-    event.preventDefault();
+    Meteor.call('notes.update', this.props.noteidentity, this.state.value);
   }
+  
 
+  enterSubmit(e) {
+    e = e || event;
+    if (e.keyCode === 13 && !e.ctrlKey) {
+      console.log("hi");
+      Meteor.call('notes.update', this.props.noteidentity, this.state.value);
+      Meteor.call('notes.toggleedit', this.props.noteidentity);
+    }
+ 
+  }
 
   render() {
     return (
-      //<div className="textEdit">
-        <form onSubmit={this.handleSubmit}>
-          <textarea name="message" rows="10" cols="30"
+      
+          <textarea id="noteEditor" name="message" rows="3" cols="30"
             value={this.state.value}
-            onChange={this.handleChange}>The cat was playing in the garden.</textarea>
-          <input type="submit" value="Submit"/>
-        </form>
-    //  </div>
+            onChange={this.handleChange} 
+	    onKeyUp={this.enterSubmit }></textarea>
+    
     );
   }
 }

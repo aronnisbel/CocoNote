@@ -47,8 +47,11 @@ body {
   left: 300px;
 }
 .notecontainer {
-  background-color: red;
+  background-color: white;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 
 .container {
@@ -74,6 +77,14 @@ h1 {
   margin-bottom: 10px;
   display: inline-block;
   margin-right: 1em;
+}
+h4 {
+  display:block;
+  float: right;
+  margin-left: 3px;
+  margin-right: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 form {
@@ -144,6 +155,14 @@ header .hide-completed {
   margin-left: 5px;
 }
 
+.noteeditorcontainer {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.deletenotebutton {
+  max-width: 5rem;
+}
 @media (max-width: 600px) {
   li {
     padding: 12px 15px;
