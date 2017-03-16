@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Template } from 'meteor/templating';
 import { Blaze } from 'meteor/blaze';
 
+
 //this component is a Accounts UI wrapper in React
 export default class AccountsUIWrapper extends Component {
   componentDidMount() {

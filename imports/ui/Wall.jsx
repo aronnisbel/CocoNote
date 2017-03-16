@@ -11,10 +11,9 @@ export default class Wall extends Component {
   }
 
   renderNotecontainers() {
-
-    return this.state.noteContainers.map((notedata) => (
-	<NoteContainer key={notedata._id} notedata={notedata}/>
-	));
+    return this.props.notecontent.map((note) => (
+          <NoteContainer key={note._id} notetext={note} />
+        ));;
   }
 
   onButtonClick() {
