@@ -31,7 +31,7 @@ Meteor.methods({
 		  createdAt: new Date(),
 		  posX: 300,
 		  posY: 300,
-		  editmode: false,
+		  editmode: true,
 		  owner: this.userId,
 		  username: Meteor.users.findOne(this.userId).username,
 		});

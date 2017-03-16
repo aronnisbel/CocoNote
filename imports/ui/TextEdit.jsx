@@ -36,8 +36,8 @@ export default class TextEdit extends Component {
   render() {
     return (
       
-          <textarea id="noteEditor" name="message" rows="3" cols="30"
-            value={this.state.value}
+          <textarea autofocus onclick="this.focus();this.select()"id="noteEditor" name="message" rows="3" cols="30"
+            placeholder={this.state.value}
             onChange={this.handleChange} 
 	    onKeyUp={this.enterSubmit }></textarea>
     
