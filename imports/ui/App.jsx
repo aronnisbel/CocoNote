@@ -4,10 +4,14 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 
 import { Notes } from '../api/notes.js';
+import { Tasks } from '../api/tasks.js';
+import { Todos } from '../api/todolists.js';
 
-import Wall from './Wall.jsx';
+
+import Task from './Task.jsx';
 import NoteContainer from './NoteContainer.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
+import TodolistContainer from './TodolistContainer.jsx';
 
 // App component - represents the whole app
 // grunden i vår applikation
@@ -17,6 +21,8 @@ class App extends Component {
 	super(props);
 	this.handleClick = this.handleClick.bind(this);
 	this.state = { notescontent: []};
+	this.addTodoList = this.addTodoList.bind(this);
+	this.renderTodos = this.renderTodos.bind(this);
   }
 
   renderNoteContents() {
@@ -25,7 +31,7 @@ class App extends Component {
     ));
   }
 
-
+  /*add new note*/
   handleClick(event) {
 	event.preventDefault();
 
@@ -40,11 +46,21 @@ class App extends Component {
 	ReactDOM.findDOMNode(this.refs.textInput).value = '';*/
   }
 
-  renderNotes() {
-	return this.props.notes.map((note) => (
-	  <NoteContainer key={note._id} notetext={note} />
-	));
+  /* Add new todolist */
+  addTodoList(event) {
+    event.preventDefault();
+
+    const todotext = "coconote";
+    Meteor.call('todolists.insert', todotext);
+    
   }
+  /*Render todolists in Containers*/
+  renderTodos() {
+    return this.props.todolists.map((todolist) => (
+      <TodolistContainer key ={todolist._id} todolistowner={todolist.owner} todo={todolist}/>
+    ));
+  }
+
   renderonwallclick(event) {
     event.preventDefault();
     if (event.target.id == "wallcanvas") {
@@ -58,6 +74,10 @@ class App extends Component {
       //Meteor.call('notes.insertwithpos', text, event.target.clientX, event.target.clientY);
     }
   }
+
+
+
+
   render() {
     return (
       <div className="container">
@@ -67,16 +87,20 @@ class App extends Component {
 	  <AccountsUIWrapper />
 	  {this.props.currentUser ?
 
-		  <button type="button" className="new-note" onClick={this.handleClick}>Add note</button> : ''
+		  <div>
+			<button type="button" className="new-note" onClick={this.handleClick}>Add note</button>
+			<button type="button" className="new-todo-list" onClick={this.addTodoList}>Add Todo-list</button>
+		  </div> : ''
 	  }
         </header>
 
         <main id="wallcanvas"className="wall-area wall" onClick={this.renderonwallclick.bind(this)}>
 
          {this.renderNoteContents()}
+	 {this.renderTodos()}
+
 
      </main>
-
       </div>
     );
   }
@@ -88,8 +112,10 @@ App.proptypes = {
 
 export default createContainer(() => {
 	Meteor.subscribe('usernotes');
+	Meteor.subscribe('tasks');
 	return {
-		
+		todolists: Todos.find({}).fetch(),
+		tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
 		notes: Notes.find({}).fetch(),
 		currentUser: Meteor.user(),
 	};
