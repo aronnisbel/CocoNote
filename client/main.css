@@ -36,7 +36,20 @@ body {
   bottom: 20px;
   left: 10px;
 }
-
+.deletetaskbutton{
+  background: none;
+  border-color: #eeeeee;
+  border-style: none;
+  font-size: 1.4rem;
+}
+.todolisttaskscontainer span {
+  position: relative;
+  top: -2px;
+}
+.todolisttaskscontainer li, .todolisttaskscontainer input {
+ font-family: 'Roboto Slab', sans-serif;
+ font-size: 0.9rem;
+}
 .textEdit{
   background-color: #fff;
 
@@ -50,9 +63,9 @@ body {
 .notecontainer {
   border-style: solid;
   border-width: 1px;
-  border-color: #999999;
+  border-color: #fff;
   border-radius: 4px;
-  min-width: 5rem;
+  min-width: 13rem;
   background-color: white;
   position: absolute;
   display: flex;
@@ -61,11 +74,14 @@ body {
   padding-right: 12px;
   padding-top: 12px;
   padding-bottom: 12px;
-  box-shadow: 0px 2px 3px #888888;
+  box-shadow: 0px 2px 3px #666666;
 }
 .notecontainer p {
   white-space: pre;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Roboto Slab', sans-serif;
+  font-weight: 400;
+  color: #222;
+  font-size: 0.9rem;
   padding: 20px;
   border-style: solid;
   border-width: 1px;
@@ -80,6 +96,7 @@ body {
   min-height: 100%;
   background: rgba(255,255,255,0.03);
 }
+
 
 header {
   display: flex;
@@ -108,13 +125,17 @@ header {
   margin-left: 10vw;
 }
 
-.new-note {
+.new-note, .new-todo {
   background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
   border: none;
   border-radius: 30px;
   padding-left: 12px;
   padding-right: 12px;
   color: white;
+  height: 100%;
+}
+.new-todo {
+  margin-left: 20px;
 }
 
 h1 {

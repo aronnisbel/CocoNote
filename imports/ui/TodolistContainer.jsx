@@ -6,6 +6,8 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Tasks } from '../api/tasks.js';
 import { Todolists } from '../api/todolists.js';
 
+import Task from './Task.jsx';
+
 class TodolistContainer extends Component {
   constructor(props) {
     super(props);
@@ -23,16 +25,21 @@ class TodolistContainer extends Component {
 
     // Find the text field via the React ref
     const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
-
-    Meteor.call('tasks.insert', text, this.props.key);
-
+    Meteor.call('tasks.insert', text, this.props.todo._id);
+    console.log(" after insert of task" + this.props.todo.id);
     // Clear form
     ReactDOM.findDOMNode(this.refs.textInput).value = '';
   }
-
+  setHeadline(event) {
+    const text = ReactDOM.findDOMNode(this.refs.headlineInput).value.trim();
+    Meteor.call('tasks.setTopic', this.props.todo._id, text);
+    //console.log(" after insert of task" + this.props.todo.id);
+    // Clear form
+    ReactDOM.findDOMNode(this.refs.headlineInput).value = '';
+  }
   renderTasks() {
-
-    return this.props.tasks.map((task) => (
+    var specifictasks = Tasks.find({ todolistId: this.props.todo._id }).fetch()
+    return specifictasks.map((task) => (
         <Task
           key={task._id}
           task={task}
@@ -53,16 +60,21 @@ class TodolistContainer extends Component {
         handle=".notecontainer"
         bounds=".wall"
         cancel= 'textarea'
-        defaultPosition={{x: this.props.todo.posY, y: this.props.todo.posY}}
+        defaultPosition={{x: this.props.todo.posX, y: this.props.todo.posY}}
         position={null}
         zIndex={100}
         onStart={this.handleStart}
         onDrag={this.handleDrag}
         onStop={this.updatePosition}>
-        <div className="todolistcontainer" ref="todocontainer">
+        <div className="notecontainer" ref="todocontainer">
 
          <button type="button" className="deletenotebutton" onClick={this.deletethisTodoList}>&times;</button>
          <div className="todolisttaskscontainer">
+	   {/*<form className="new-task" onSubmit={this.setHeadline.bind(this)} >
+	     <input
+		type="text"
+		ref="headlineInput" />
+	   </form> */}
            <form className="new-task" onSubmit={this.handleSubmit} >
              <input
                type="text"
@@ -83,14 +95,13 @@ class TodolistContainer extends Component {
 }
 
 TodolistContainer.propTypes = {
-  tasks: PropTypes.array.isRequired,
   currentUser: PropTypes.object,
 };
 
 export default createContainer(() => {
 
   return {
-    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
+    
     currentUser: Meteor.user(),
   };
 }, TodolistContainer);

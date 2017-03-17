@@ -28,6 +28,7 @@ if (Meteor.isServer) {
 Meteor.methods({
   'tasks.insert'(text, todoId) {
     check(text, String);
+    console.log(todoId);
     check(todoId, String);
 
     // Make sure the user is logged in before inserting a task
@@ -37,6 +38,7 @@ Meteor.methods({
 
     Tasks.insert({
       text,
+      checked: false,
       todolistId: todoId,
       createdAt: new Date(),
       owner: Meteor.userId(),

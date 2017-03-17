@@ -62,11 +62,11 @@ Meteor.methods({
 		check(noteId, String);
 		Notes.remove(noteId);
 	},
-  'notes.updatePosition'(noteId, posx, posy){
-    check(noteId, String);
-    Notes.update({
-      _id: noteId},{$set:{posX: posx, posY: posy}});
-  },
+	'notes.updatePosition'(noteId, posx, posy){
+    		check(noteId, String);
+    		Notes.update({
+      		  _id: noteId},{$set:{posX: posx, posY: posy}});
+  	},
 	'notes.update'(noteId,texttoWrite) {
 		check(noteId, String);
 		check(texttoWrite, String)

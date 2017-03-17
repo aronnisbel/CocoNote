@@ -87,9 +87,9 @@ class App extends Component {
 	  <AccountsUIWrapper />
 	  {this.props.currentUser ?
 
-		  <div>
+		  <div className="buttonscontainer">
 			<button type="button" className="new-note" onClick={this.handleClick}>Add note</button>
-			<button type="button" className="new-todo-list" onClick={this.addTodoList}>Add Todo-list</button>
+			<button type="button" className="new-todo" onClick={this.addTodoList}>Add Todo-list</button>
 		  </div> : ''
 	  }
         </header>
@@ -113,9 +113,10 @@ App.proptypes = {
 export default createContainer(() => {
 	Meteor.subscribe('usernotes');
 	Meteor.subscribe('tasks');
+	Meteor.subscribe('usertodos');
 	return {
 		todolists: Todos.find({}).fetch(),
-		tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
+		tasks: Tasks.find({}).fetch(),
 		notes: Notes.find({}).fetch(),
 		currentUser: Meteor.user(),
 	};
