@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 
 import { Notes } from '../api/notes.js';
-import TextEdit from './TextEdit.jsx';
+import DraftEditor from './DraftEditor.jsx';
 
 export default class NoteContainer extends Component {
   constructor(props) {
@@ -58,7 +58,8 @@ export default class NoteContainer extends Component {
          <button type="button" className="deletenotebutton" onClick={this.deletethisNote}>&times;</button>
       	{ this.props.notetext.editmode ?
       		 <div className="noteeditorcontainer">
-      		 <TextEdit datecreated={this.props.notetext.createdAt} temptext={this.props.notetext.text} noteidentity={this.props.notetext._id}/></div> : <p onClick={this.toggleEditor}>{this.props.notetext.text}</p>
+             <DraftEditor
+               datecreated={this.props.notetext.createdAt} temptext={this.props.notetext.text} noteidentity={this.props.notetext._id}/></div> : <p onClick={this.toggleEditor}>{this.props.notetext.text}</p>
       	}
 
         </div>

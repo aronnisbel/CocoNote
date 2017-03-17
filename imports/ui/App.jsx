@@ -31,7 +31,7 @@ class App extends Component {
 
 	/*// Find the text field via the React ref
         const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();*/
-	
+
 	const text = "";
 	Meteor.call('notes.insert', text);
 
@@ -89,9 +89,8 @@ App.proptypes = {
 export default createContainer(() => {
 	Meteor.subscribe('usernotes');
 	return {
-		
+
 		notes: Notes.find({}).fetch(),
 		currentUser: Meteor.user(),
 	};
 }, App);
-

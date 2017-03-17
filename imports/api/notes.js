@@ -55,8 +55,8 @@ Meteor.methods({
                   username: Meteor.users.findOne(this.userId).username,
                 });
 
-		
-		
+
+
         },
 	'notes.remove'(noteId) {
 		check(noteId, String);
@@ -67,8 +67,7 @@ Meteor.methods({
     Notes.update({
       _id: noteId},{$set:{posX: posx, posY: posy}});
   },
-	'notes.update'(noteId,texttoWrite) {
-		check(noteId, String);
+	'notes.update'(texttoWrite) {
 		check(texttoWrite, String)
 		Notes.update( {
 		  _id: noteId},{$set:{ text: texttoWrite, editmode: false}});
