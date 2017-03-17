@@ -31,7 +31,7 @@ export default class TextEdit extends Component {
     }
     else if (e.keyCode === 13 && !e.ctrlKey) {
 
-      if(this.state.value.length == 1) {
+      if(this.state.value.length <= 0) {
 	console.log("hello");
 	Meteor.call('notes.remove',this.props.noteidentity);
       }
