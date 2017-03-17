@@ -42,11 +42,11 @@ export default class NoteContainer extends Component {
   render() {
     return (
         <Draggable
-	axis="both"
-	grid={[1,1]}
+      	axis="both"
+      	grid={[1,1]}
         handle=".notecontainer"
-	bounds=".wall"
-	cancel= 'textarea'
+      	bounds=".wall"
+      	cancel= 'textarea'
         defaultPosition={{x: this.props.notetext.posX, y: this.props.notetext.posY}}
         position={null}
         zIndex={100}
@@ -54,14 +54,16 @@ export default class NoteContainer extends Component {
         onDrag={this.handleDrag}
         onStop={this.updatePosition}>
         <div className="notecontainer" ref="noteainer">
-        <button type="button" className="deletenotebutton" onClick={this.deletethisNote}>&times;</button>
-	{ this.props.notetext.editmode ?
-		 <div className="noteeditorcontainer">
-		 <TextEdit datecreated={this.props.notetext.createdAt} temptext={this.props.notetext.text} noteidentity={this.props.notetext._id}/></div> : <p onClick={this.toggleEditor}>{this.props.notetext.text}</p>
-	}
+
+         <button type="button" className="deletenotebutton" onClick={this.deletethisNote}>&times;</button>
+      	{ this.props.notetext.editmode ?
+      		 <div className="noteeditorcontainer">
+      		 <TextEdit datecreated={this.props.notetext.createdAt} temptext={this.props.notetext.text} noteidentity={this.props.notetext._id}/></div> : <p onClick={this.toggleEditor}>{this.props.notetext.text}</p>
+      	}
+
         </div>
 
-	</Draggable>);
+	     </Draggable>);
   }
 
 }
