@@ -36,6 +36,28 @@ Meteor.methods({
 		  username: Meteor.users.findOne(this.userId).username,
 		});
 	},
+	'notes.insertpos'(text, xxxx, yyyy) {
+                check(text,String);
+
+                // make sure user is logged in before inserting a task
+
+                if (! this.userId) {
+                        throw new Meteor.Error('not-authorized');
+                }
+
+                Notes.insert({
+                  text,
+                  createdAt: new Date(),
+                  posX: xxxx,
+                  posY: yyyy,
+                  editmode: true,
+                  owner: this.userId,
+                  username: Meteor.users.findOne(this.userId).username,
+                });
+
+		
+		
+        },
 	'notes.remove'(noteId) {
 		check(noteId, String);
 		Notes.remove(noteId);
