@@ -15,6 +15,8 @@ class TodolistContainer extends Component {
     this.deletethisTodoList = this.deletethisTodoList.bind(this);
     this.updatePosition = this.updatePosition.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setEditMode = this.setEditMode.bind(this);
+    this.setTopic = this.setTopic.bind(this);
   }
 
   deletethisTodoList() {
@@ -26,7 +28,7 @@ class TodolistContainer extends Component {
     // Find the text field via the React ref
     const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
     Meteor.call('tasks.insert', text, this.props.todo._id);
-    console.log(" after insert of task" + this.props.todo.id);
+    // console.log(" after insert of task" + this.props.todo.id);
     // Clear form
     ReactDOM.findDOMNode(this.refs.textInput).value = '';
   }
@@ -52,6 +54,17 @@ class TodolistContainer extends Component {
     Meteor.call('todolists.updatePosition', this.props.todo._id, numbers[0], numbers[1]);
   }
 
+  setEditMode() {
+
+    Meteor.call('todolists.seteditmode', this.props.todo._id);
+  }
+
+  setTopic(event) {
+    event.preventDefault();
+    const topictext = ReactDOM.findDOMNode(this.refs.headlineInput).value.trim();
+
+    Meteor.call('todolists.setTopic', this.props.todo._id , topictext );
+  }
   render() {
     return (
         <Draggable
@@ -66,15 +79,21 @@ class TodolistContainer extends Component {
         onStart={this.handleStart}
         onDrag={this.handleDrag}
         onStop={this.updatePosition}>
-        <div className="notecontainer" ref="todocontainer">
+        <div className="todocontainer" ref="todocontainer">
 
          <button type="button" className="deletenotebutton" onClick={this.deletethisTodoList}>&times;</button>
-         <div className="todolisttaskscontainer">
-	   {/*<form className="new-task" onSubmit={this.setHeadline.bind(this)} >
-	     <input
-		type="text"
-		ref="headlineInput" />
-	   </form> */}
+        { this.props.todo.editmode ?
+                <form className="todotopicform" onSubmit={this.setTopic} >
+                  <input
+                   type="text"
+                   ref="headlineInput"
+                   placeholder={this.props.todo.topic}/>
+                </form>
+                :
+                <p className="todoTopic" onClick={this.setEditMode}>{this.props.todo.topic}</p>
+           
+	} 
+	<div className="todolisttaskscontainer">
            <form className="new-task" onSubmit={this.handleSubmit} >
              <input
                type="text"

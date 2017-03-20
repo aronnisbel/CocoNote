@@ -60,7 +60,7 @@ body {
   top: 100px;
   left: 300px;
 }
-.notecontainer {
+.notecontainer, .todocontainer {
   border-style: solid;
   border-width: 1px;
   border-color: #fff;
@@ -89,7 +89,38 @@ body {
   border-radius: 2px;
   margin-bottom: 0px;
   margin-top: 5px;
+}
 
+.todocontainer p {
+  font-family: sans-serif;
+  font-size: 1.3rem;
+  margin: 0;
+  margin-left: 20%;
+  margin-top: -1rem;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  color: #555;
+}
+.todocontainer .todotopicform {
+  margin: 0;
+  margin-left: 20%;
+  margin-top: -1.3rem;
+}
+
+.todotopicform input {
+
+  font-family: 'Roboto';
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #444;
+  box-sizing: border-box;
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  width: 100%;
+  padding-right: 0;
+  font-size: 1.3rem;
 }
 .container {
   min-width: 100%;
@@ -232,6 +263,50 @@ header .hide-completed {
   background: none;
   border: none;
   font-size: 1rem;
+}
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+.themedropdowncontainer {
+  position: absolute;
+  top: 20px;
+  right: 10vw;
+  display: inline-block;
+  
+}
+
+#themeDropdown {
+  display:none;
+}
+.dropdown-content {
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    background-image: grey;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.themeop {
+ width: 100px;
+ height: 20px;
 }
 @media (max-width: 600px) {
   li {

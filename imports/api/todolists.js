@@ -27,7 +27,8 @@ Meteor.methods({
     	}
 
     	Todos.insert({
-      	  topic: "",
+	  editmode: false,
+      	  topic: "Click to set topic",
           createdAt: new Date(),
       	  posX: 300,
       	  posY: 300,
@@ -40,11 +41,17 @@ Meteor.methods({
     //todo: add meteor call to emove tasks with this listId
     Todos.remove(todolistId);
   },
+  'todolists.seteditmode'(todolistId) {
+  	check(todolistId, String);
+	
+	Todos.update( {
+	  _id: todolistId}, {$set: {editmode: true}});
+  },
   'todolists.setTopic'(todolistId, text) {
   	check(todolistId, String);
 
 	Todos.update({
-	  _id: todolistId}, {$set:{topic: text}});
+	  _id: todolistId}, {$set:{topic: text, editmode: false}});
   },
   'todolists.updatePosition'(todolistId, posx, posy){
                 check(todolistId, String);

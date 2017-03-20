@@ -23,6 +23,8 @@ class App extends Component {
 	this.state = { notescontent: []};
 	this.addTodoList = this.addTodoList.bind(this);
 	this.renderTodos = this.renderTodos.bind(this);
+	this.setbackground = this.setbackground.bind(this);
+	this.showdropdownoptions = this.showdropdownoptions.bind(this);
   }
 
   renderNoteContents() {
@@ -35,15 +37,11 @@ class App extends Component {
   handleClick(event) {
 	event.preventDefault();
 
-	/*// Find the text field via the React ref
         const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();*/
 	
 	const text = "";
 	Meteor.call('notes.insert', text);
 
-	// clear form
-        /*
-	ReactDOM.findDOMNode(this.refs.textInput).value = '';*/
   }
 
   /* Add new todolist */
@@ -67,8 +65,6 @@ class App extends Component {
 
       var xxpos = event.clientX;
       var yypos = event.clientY - 70;
-	console.log(event.clientX);
-	console.log(event.clientY);
       const text = "";
       Meteor.call('notes.insertpos', text, xxpos, yypos );
       //Meteor.call('notes.insertwithpos', text, event.target.clientX, event.target.clientY);
@@ -76,7 +72,18 @@ class App extends Component {
   }
 
 
+  showdropdownoptions() {
+   // document.getElementById("themeDropdown").style.display = "block";
+   document.body.style.background = "white";
+  }
 
+  setbackground(background) {
+    
+    document.body.style.backgroundImage = background;
+   // document.getElementById("themeDropdown").style.display = "none";
+    
+  // document.getElementById("dropbtn").style.backgroundImage = background;
+  }
 
   render() {
     return (
@@ -92,6 +99,10 @@ class App extends Component {
 			<button type="button" className="new-todo" onClick={this.addTodoList}>Add Todo-list</button>
 		  </div> : ''
 	  }
+
+	 <div className="themedropdowncontainer">
+  		<button onClick={this.showdropdownoptions} id="dropbtn">Choose background color</button>
+	</div>
         </header>
 
         <main id="wallcanvas"className="wall-area wall" onClick={this.renderonwallclick.bind(this)}>
