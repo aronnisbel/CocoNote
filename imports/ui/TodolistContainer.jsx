@@ -70,7 +70,7 @@ class TodolistContainer extends Component {
         <Draggable
         axis="both"
         grid={[1,1]}
-        handle=".notecontainer"
+        handle=".todocontainer"
         bounds=".wall"
         cancel= 'textarea'
         defaultPosition={{x: this.props.todo.posX, y: this.props.todo.posY}}
