@@ -37,7 +37,7 @@ class App extends Component {
   handleClick(event) {
 	event.preventDefault();
 
-        const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();*/
+//        const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();*/
 	
 	const text = "";
 	Meteor.call('notes.insert', text);
