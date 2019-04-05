@@ -38,7 +38,7 @@ class App extends Component {
 	event.preventDefault();
 
 //        const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();*/
-	
+
 	const text = "";
 	Meteor.call('notes.insert', text);
 
@@ -50,7 +50,7 @@ class App extends Component {
 
     const todotext = "coconote";
     Meteor.call('todolists.insert', todotext);
-    
+
   }
   /*Render todolists in Containers*/
   renderTodos() {
@@ -78,10 +78,10 @@ class App extends Component {
   }
 
   setbackground(background) {
-    
+
     document.body.style.backgroundImage = background;
    // document.getElementById("themeDropdown").style.display = "none";
-    
+
   // document.getElementById("dropbtn").style.backgroundImage = background;
   }
 
@@ -90,6 +90,7 @@ class App extends Component {
       <div className="container">
         <header>
           <h1>CocoNote!</h1>
+    <img src="{{getImageUser this._id}}" alt="..."></img>
 	  <h3 id="userlogintext"> User: </h3>
 	  <AccountsUIWrapper />
 	  {this.props.currentUser ?
@@ -132,4 +133,3 @@ export default createContainer(() => {
 		currentUser: Meteor.user(),
 	};
 }, App);
-

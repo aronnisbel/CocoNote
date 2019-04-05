@@ -22,6 +22,8 @@ Accounts.onCreateUser(function (options, user) {
     }
     user.username = user.services.facebook.name;
     user.emails = [{address: user.services.facebook.email}];
+    options.profile.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
+        user.profile = options.profile;
 
     return user;
 });
