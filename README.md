@@ -16,8 +16,8 @@ This application offers a log in funtionality, you can create a user and decide 
 
 Installing and configuration instructions
 ------------------------
-Requirements: Meteor, ... 
-cd CocoNote (the applicationname)
+Requirements: Meteor, Texteditor (preferebly Atom.io) 
+cd CocoNote (the application name)
 meteor npm install (install meteor)
 meteor (to run the application)
 
