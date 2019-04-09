@@ -25,7 +25,7 @@ Contact inforamtion
 ------------------------
 The website can be reached at:
 Website: 
-E-mail: linnea.berggren@live.se, måns, aron
+E-mail: aron.nisbel@hotmail.com, linnea.berggren@live.se, måns
 
 
 
