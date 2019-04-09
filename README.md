@@ -18,7 +18,8 @@ Installing, configuration, and run instructions
 -------------------------
 Installing Meteor
 -----------------
-Copy this cmd.exe command: 
+Copy this cmd.exe command:
+--------------------------
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 
 1. First, ensure that you are using an administrative shell - you can also install as a non-admin, check out Non-Administrative Installation.
@@ -30,6 +31,7 @@ Copy this cmd.exe command:
 Source: https://chocolatey.org/install#install-with-cmdexe
 
 Then copy and run the following command:
+----------------------------------------
 choco install meteor
 
 Source: https://www.meteor.com/install
